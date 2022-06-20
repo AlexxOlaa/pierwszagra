@@ -23,7 +23,7 @@ int main()
     }*/
     srand(time(0));
 
-    RenderWindow window(VideoMode(400, 400), "Minesweeper!");
+    RenderWindow window(VideoMode(400, 400), "Saper!");
 
     int w = 32;
     int grid[12][12];
