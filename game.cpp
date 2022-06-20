@@ -7,7 +7,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
-
     while (window.isOpen())
     {
         sf::Event event;
@@ -16,7 +15,6 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
         window.clear();
         window.draw(shape);
         window.display();
@@ -63,18 +61,18 @@ int main()
         int x = pos.x / w;
         int y = pos.y / w;
 
-        Event e;
-        while (window.pollEvent(e))
+        Event event;
+        while (window.pollEvent(event))
         {
-            if (e.type == Event::Closed)
+            if (event.type == Event::Closed)
                 window.close();
 
-            if (e.type == Event::MouseButtonPressed)
-                if (e.key.code == Mouse::Left) sgrid[x][y] = grid[x][y];
-                else if (e.key.code == Mouse::Right) sgrid[x][y] = 11;
+            if (event.type == Event::MouseButtonPressed)
+                if (event.key.code == Mouse::Left) sgrid[x][y] = grid[x][y];
+                else if (event.key.code == Mouse::Right) sgrid[x][y] = 11;
         }
 
-        window.clear(Color::White);
+        window.clear(Color::Blue);
 
         for (int i = 1; i <= 10; i++)
             for (int j = 1; j <= 10; j++)
