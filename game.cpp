@@ -16,7 +16,7 @@ int main()
     RenderWindow window(VideoMode(400, 500), "Saper!");
 
     Texture texture;
-    texture.loadFromFile("sztuka.jpg");
+    texture.loadFromFile("Pattern.jpg");
     Sprite sprite(texture);
 
     Font font;
