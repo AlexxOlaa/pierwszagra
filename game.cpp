@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <time.h>
+#include <iostream>
+#include <sstream>
 
+using namespace std;
 using namespace sf;
 
 int main()
@@ -33,10 +36,28 @@ int main()
     text3.setString("Good luck!");
 
     Texture texture1;
-    texture1.loadFromFile("Alexander.png");
+    texture1.loadFromFile("Clock.png");
     Sprite sprite1;
     sprite1.setTexture(texture1);
-    sprite1.setPosition(10, 10);
+    sprite1.setPosition(215, 360);
+
+    Clock clock;
+    Time time;
+    stringstream ss;
+    int s = 0;
+    int m = 0;
+    int h = 0;
+    Text timer;
+    timer.setFont(font);
+    timer.setPosition(250, 360);
+    timer.setCharacterSize(25);
+    timer.setString("");
+
+    Texture texture2;
+    texture2.loadFromFile("Game_Over.png");
+    Sprite sprite2;
+    sprite2.setTexture(texture2);
+    sprite2.setPosition(0, 0);
 
     int area[12][12];
     int showarea[12][12]; 
@@ -111,26 +132,63 @@ int main()
                 }
             }
         }
+
         window.clear(Color::Blue);
 
-        for (int i = 1; i <= 10; i++)
+        ss.str("");
+        time = clock.getElapsedTime();
+        s = time.asSeconds();
+        h = s / 3600;
+        m = (s - (h * 3600)) / 60;
+        s = s - (h * 3600 + m * 60);
+        if(h<10)
         {
-            for (int j = 1; j <= 10; j++)
-            {
-                if (showarea[x][y] == 9)
-                {
-                    showarea[i][j] = area[i][j];
-                }
-                sprite.setTextureRect(IntRect(showarea[i][j] * width, 0, width, width));
-                sprite.setPosition(i * width, j * width);
-                window.draw(sprite);
-            }
+          ss<<"0"<<h;
         }
+        else
+        {
+           ss<<h;
+        }
+        if(m<10)
+        {
+            ss<<":"<<"0"<<m;
+        }
+        else
+        {
+            ss<<":"<<m;
+        }
+        if(s<10)
+        {
+            ss<<":"<<"0"<<s;
+        }
+        else
+        {
+            ss<<":"<<s;
+        }
+        timer.setString(ss.str());
+
         window.draw(text);
         window.draw(text1);
         window.draw(text2);
         window.draw(text3);
         window.draw(sprite1);
+        window.draw(timer);
+
+        for (int i = 1; i <= 10; i++)
+        {
+            for (int j = 1; j <= 10; j++)
+            {
+                sprite.setTextureRect(IntRect(showarea[i][j] * width, 0, width, width));
+                sprite.setPosition(i * width, j * width);
+                window.draw(sprite);
+                if (showarea[x][y] == 9)
+                {
+                    showarea[i][j] = area[i][j];
+                    clock.restart();
+                    window.draw(sprite2);
+                }
+            }
+        }
         window.display();
     }
     return 0;
