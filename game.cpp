@@ -6,17 +6,31 @@ using namespace sf;
 int main()
 {   
     srand(time(0));
-    RenderWindow window(VideoMode(400, 600), "Saper!");
+    RenderWindow window(VideoMode(400, 500), "Saper!");
 
     Texture texture;
     texture.loadFromFile("sztuka.jpg");
     Sprite sprite(texture);
 
     Font font;
-    font.loadFromFile("");
-    Text text;
-    text.setPosition(10, 10);
+    font.loadFromFile("arial.ttf");
+    Text text, text1, text2, text3;
+    text.setFont(font);
+    text.setPosition(10, 400);
+    text.setCharacterSize(15);
     text.setString("Zasady gry:");
+    text1.setFont(font);
+    text1.setPosition(10, 415);
+    text1.setCharacterSize(15);
+    text1.setString("Lewym przyciskiem myszy odslaniasz pole");
+    text2.setFont(font);
+    text2.setPosition(10, 430);
+    text2.setCharacterSize(15);
+    text2.setString("Prawym przyciskiem myszy oznaczasz pole kwiatkiem");
+    text3.setFont(font);
+    text3.setPosition(10, 445);
+    text3.setCharacterSize(15);
+    text3.setString("Powodzenia!");
 
     Texture texture1;
     texture1.loadFromFile("Alexander.png");
@@ -112,10 +126,12 @@ int main()
                 window.draw(sprite);
             }
         }
-        window.draw(sprite1);
         window.draw(text);
+        window.draw(text1);
+        window.draw(text2);
+        window.draw(text3);
+        window.draw(sprite1);
         window.display();
-        window.clear(Color::Blue);
     }
     return 0;
 }
