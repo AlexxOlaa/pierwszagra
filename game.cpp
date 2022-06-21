@@ -2,9 +2,13 @@
 #include <time.h>
 #include <iostream>
 #include <sstream>
+#include <windows.h>
 
 using namespace std;
 using namespace sf;
+
+bool gameOver = false;
+bool gameOver1 = false;
 
 int main()
 {   
@@ -105,8 +109,13 @@ int main()
         }
     }
 
-    while (window.isOpen())
+    while (window.isOpen() && gameOver1 == false)
     {
+        if (gameOver == true)
+        {
+            Sleep(20);
+        }
+
         int width = 32;
         Vector2i pos = Mouse::getPosition(window);
         int x = pos.x / width;
@@ -186,6 +195,15 @@ int main()
                     showarea[i][j] = area[i][j];
                     clock.restart();
                     window.draw(sprite2);
+                    gameOver = true;
+                }
+                else if ((showarea[x][y] == 0 || showarea[x][y] == 1 || showarea[x][y] == 2 || showarea[x][y] == 3 || showarea[x][y] == 4 || showarea[x][y] == 5 || showarea[x][y] == 6 || showarea[x][y] == 7 || showarea[x][y] == 8 || showarea[x][y] == 9 || showarea[x][y] == 10 || showarea[x][y] == 11 ) && gameOver == true)
+                {
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        window.draw(sprite2);
+                    }
+                    gameOver1 = true;
                 }
             }
         }
