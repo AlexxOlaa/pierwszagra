@@ -18,19 +18,19 @@ int main()
     text.setFont(font);
     text.setPosition(10, 400);
     text.setCharacterSize(15);
-    text.setString("Zasady gry:");
+    text.setString("Game rules:");
     text1.setFont(font);
     text1.setPosition(10, 415);
     text1.setCharacterSize(15);
-    text1.setString("Lewym przyciskiem myszy odslaniasz pole");
+    text1.setString("Click left mouse button to open the cell");
     text2.setFont(font);
     text2.setPosition(10, 430);
     text2.setCharacterSize(15);
-    text2.setString("Prawym przyciskiem myszy oznaczasz pole kwiatkiem");
+    text2.setString("Click right mouse button to mark the cell with a flower");
     text3.setFont(font);
     text3.setPosition(10, 445);
     text3.setCharacterSize(15);
-    text3.setString("Powodzenia!");
+    text3.setString("Good luck!");
 
     Texture texture1;
     texture1.loadFromFile("Alexander.png");
