@@ -1,15 +1,28 @@
 #include <SFML/Graphics.hpp>
 #include <time.h>
+
 using namespace sf;
 
 int main()
 {   
     srand(time(0));
-    RenderWindow window(VideoMode(400, 400), "Saper!");
+    RenderWindow window(VideoMode(400, 600), "Saper!");
 
     Texture texture;
     texture.loadFromFile("sztuka.jpg");
     Sprite sprite(texture);
+
+    Font font;
+    font.loadFromFile("");
+    Text text;
+    text.setPosition(10, 10);
+    text.setString("Zasady gry:");
+
+    Texture texture1;
+    texture1.loadFromFile("Alexander.png");
+    Sprite sprite1;
+    sprite1.setTexture(texture1);
+    sprite1.setPosition(10, 10);
 
     int area[12][12];
     int showarea[12][12]; 
@@ -68,9 +81,12 @@ int main()
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
+            {
                 window.close();
+            }
 
             if (event.type == Event::MouseButtonPressed)
+            {
                 if (event.key.code == Mouse::Left)
                 {
                     showarea[x][y] = area[x][y];
@@ -79,11 +95,12 @@ int main()
                 {
                     showarea[x][y] = 11;
                 }
+            }
         }
-
         window.clear(Color::Blue);
 
         for (int i = 1; i <= 10; i++)
+        {
             for (int j = 1; j <= 10; j++)
             {
                 if (showarea[x][y] == 9)
@@ -94,8 +111,11 @@ int main()
                 sprite.setPosition(i * width, j * width);
                 window.draw(sprite);
             }
-
+        }
+        window.draw(sprite1);
+        window.draw(text);
         window.display();
+        window.clear(Color::Blue);
     }
     return 0;
 }
